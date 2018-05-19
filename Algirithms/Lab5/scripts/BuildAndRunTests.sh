@@ -8,4 +8,9 @@ fi
 cd ../build
 
 cmake .. -Dkmp=ON -Dshift=ON -Dtest=ON
-echo 'Buld Completed Sucsessfully. Makefile is in ../build'
+make
+
+if ! [ -f "$Lab5_test" ]; then
+    echo "Build sucsessfull. Launching tests..."
+    ./Lab5_test
+fi
