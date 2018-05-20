@@ -17,14 +17,14 @@ class KMPParamTest : public ::testing::TestWithParam<KMPtest>
         virtual void TearDown() { }
 };
 
-KMPtest KMPTest1 = {"ab", "abab", vector<int> {0, 2}};
-KMPtest KMPTest2 = {"ab", "cdef", vector<int> {}};
+KMPtest ShiftTest1={"abcdef", "defabc", vector<int> {3}};
+KMPtest ShiftTest2={"abababab", "babababa", vector<int> {1, 3, 5, 7}};
 
-INSTANTIATE_TEST_CASE_P(KMPTestInstantiation, KMPParamTest, ::testing::Values(KMPTest1, KMPTest2));
+INSTANTIATE_TEST_CASE_P(KMPTestInstantiation, KMPParamTest, ::testing::Values(ShiftTest1, ShiftTest2));
 
 TEST_P(KMPParamTest, KMPParamTestTrue)
 {
-    ASSERT_TRUE(KMP(GetParam().P, GetParam().T) == GetParam().result);
+    ASSERT_TRUE(KMP_UPGR(GetParam().P, GetParam().T) == GetParam().result);
 }
 
 int main(int argc, char *argv[])
