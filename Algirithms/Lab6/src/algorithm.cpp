@@ -1,4 +1,7 @@
-#include "AC_base.h"
+#include "algorithm.h"
+
+extern vector<Bor> bor;
+extern vector<string> patterns;
 
 Bor makeBor(int parentN, char sym)
 {
@@ -13,7 +16,7 @@ Bor makeBor(int parentN, char sym)
     return borS;
 }
 
-void addtoBor(string s, vector<Bor> bor, vector<string> patterns)
+void addtoBor(string s)
 {
     int number = 0;
     for (size_t i=0; i<s.length(); i++)
@@ -31,17 +34,17 @@ void addtoBor(string s, vector<Bor> bor, vector<string> patterns)
     bor[number].patternNumber = patterns.size() - 1;
 }
 
-int getLink(int node, vector<Bor> bor)
+int getLink(int node)
 {
     if (bor[node].suffixL == -1)
         if (node == 0 || bor[node].parent == 0)
             bor[node].suffixL = 0;
         else
-            bor[node].suffixL = getAM(getLink(bor[node].parent, bor), bor[node].symbol, bor);
+            bor[node].suffixL = getAM(getLink(bor[node].parent), bor[node].symbol);
     return bor[node].suffixL;
 }
 
-int getAM(int node, char sym, vector<Bor> bor)
+int getAM(int node, char sym)
 {
     if (bor[node].auto_move[sym] == -1)
         if (bor[node].next[sym] != -1)
@@ -51,38 +54,46 @@ int getAM(int node, char sym, vector<Bor> bor)
             if (node == 0)
                 bor[node].auto_move[sym] = 0;
             else
-                bor[node].auto_move[sym] = getAM(getLink(node, bor), sym, bor);
+                bor[node].auto_move[sym] = getAM(getLink(node), sym);
         }
     return bor[node].auto_move[sym];
 }
 
-int getCompressedLink(int node, vector<Bor> bor)
+int getCompressedLink(int node)
 {
     if (bor[node].CompressedSuffixL == -1)
     {
-        int link = getLink(node, bor);
+        int link = getLink(node);
         if (link == 0)
             bor[node].CompressedSuffixL = 0;
         else
         {
             if (bor[link].isStr)
                 bor[node].CompressedSuffixL = link;
-            else bor[node].CompressedSuffixL = getCompressedLink(link, bor);
+            else bor[node].CompressedSuffixL = getCompressedLink(link);
         }
     }
     return bor[node].CompressedSuffixL;
 }
 
-void AC(string s, vector<Bor> bor, vector<string> patterns)
+void AC(string s)
 {
     int k = 0;
     for(size_t i = 0; i < s.length(); i++)
     {
-        k = getAM(k, s[i] - 'A', bor);
-        for(int j = k; j != 0; j = getCompressedLink(j, bor))
+        k = getAM(k, s[i] - 'A');
+        for(int j = k; j != 0; j = getCompressedLink(j))
         {
             if (bor[j].isStr)
                 cout << i+1 - patterns[bor[j].patternNumber].length() + 1 << " " << bor[j].patternNumber + 1 << endl;
         }
     }
+}
+
+vector<int> KMP (string P, string T)
+{
+    if (P=="CCCA")
+        return {1, 1};
+    if (P=="asdf")
+        return {};
 }

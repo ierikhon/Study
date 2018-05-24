@@ -1,9 +1,10 @@
-#include "AC_joker.h"
+#include "modifiedALG.h"
+
+vector<Bor> bor;
+vector<string> patterns;
 
 int main()
 {
-    vector<Bor> bor;
-    vector<string> patterns;
     bor.push_back(makeBor(0,255));
     string T, temp;
     char joker;
@@ -23,12 +24,12 @@ int main()
         {
             len+=tmp.size();
             lenght.push_back(len);
-            addtoBor(tmp, bor, patterns);
+            addtoBor(tmp);
         }
         len++;
     }
 
-    AC(T, count, lenght, bor, patterns);
+    AC(T, count, lenght);
 
     for(int i=0; i<T.size(); i++)
         if(count[i] == patterns.size())

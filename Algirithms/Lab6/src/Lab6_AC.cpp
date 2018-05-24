@@ -1,9 +1,10 @@
-#include "AC_base.h"
+#include "algorithm.h"
+
+vector<Bor> bor;
+vector<string> patterns;
 
 int main()
 {
-    vector<Bor> bor;
-    vector<string> patterns;
     bor.push_back(makeBor(0,255));
     string T, temp;
     int PNum;
@@ -11,9 +12,8 @@ int main()
     for(int i=0; i<PNum; i++)
     {
         cin >> temp;
-        addtoBor(temp, bor, patterns);
+        addtoBor(temp);
     }
-
-    AC(T, bor, patterns);
+    AC(T);
     return 0;
 }

@@ -67,6 +67,16 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/workspace/Labs/Study/Algirithms/Lab6/build/CMakeFiles /home/ubuntu/workspace/Labs/Study/Algirithms/Lab6/build/CMakeFiles/progress.marks
@@ -99,85 +109,111 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Lab5_base
+# Target rules for targets named Lab6_base
 
 # Build rule for target.
-Lab5_base: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Lab5_base
-.PHONY : Lab5_base
+Lab6_base: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Lab6_base
+.PHONY : Lab6_base
 
 # fast build rule for target.
-Lab5_base/fast:
-	$(MAKE) -f CMakeFiles/Lab5_base.dir/build.make CMakeFiles/Lab5_base.dir/build
-.PHONY : Lab5_base/fast
+Lab6_base/fast:
+	$(MAKE) -f CMakeFiles/Lab6_base.dir/build.make CMakeFiles/Lab6_base.dir/build
+.PHONY : Lab6_base/fast
 
 #=============================================================================
-# Target rules for targets named Lab5_joker
+# Target rules for targets named Lab6_joker
 
 # Build rule for target.
-Lab5_joker: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Lab5_joker
-.PHONY : Lab5_joker
+Lab6_joker: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Lab6_joker
+.PHONY : Lab6_joker
 
 # fast build rule for target.
-Lab5_joker/fast:
-	$(MAKE) -f CMakeFiles/Lab5_joker.dir/build.make CMakeFiles/Lab5_joker.dir/build
-.PHONY : Lab5_joker/fast
+Lab6_joker/fast:
+	$(MAKE) -f CMakeFiles/Lab6_joker.dir/build.make CMakeFiles/Lab6_joker.dir/build
+.PHONY : Lab6_joker/fast
 
-src/AC_base.o: src/AC_base.cpp.o
-.PHONY : src/AC_base.o
+#=============================================================================
+# Target rules for targets named Lab6_jtest
+
+# Build rule for target.
+Lab6_jtest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Lab6_jtest
+.PHONY : Lab6_jtest
+
+# fast build rule for target.
+Lab6_jtest/fast:
+	$(MAKE) -f CMakeFiles/Lab6_jtest.dir/build.make CMakeFiles/Lab6_jtest.dir/build
+.PHONY : Lab6_jtest/fast
+
+#=============================================================================
+# Target rules for targets named Lab6_test
+
+# Build rule for target.
+Lab6_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Lab6_test
+.PHONY : Lab6_test
+
+# fast build rule for target.
+Lab6_test/fast:
+	$(MAKE) -f CMakeFiles/Lab6_test.dir/build.make CMakeFiles/Lab6_test.dir/build
+.PHONY : Lab6_test/fast
+
+src/ACtest.o: src/ACtest.cpp.o
+.PHONY : src/ACtest.o
 
 # target to build an object file
-src/AC_base.cpp.o:
-	$(MAKE) -f CMakeFiles/Lab5_base.dir/build.make CMakeFiles/Lab5_base.dir/src/AC_base.cpp.o
-.PHONY : src/AC_base.cpp.o
+src/ACtest.cpp.o:
+	$(MAKE) -f CMakeFiles/Lab6_test.dir/build.make CMakeFiles/Lab6_test.dir/src/ACtest.cpp.o
+.PHONY : src/ACtest.cpp.o
 
-src/AC_base.i: src/AC_base.cpp.i
-.PHONY : src/AC_base.i
+src/ACtest.i: src/ACtest.cpp.i
+.PHONY : src/ACtest.i
 
 # target to preprocess a source file
-src/AC_base.cpp.i:
-	$(MAKE) -f CMakeFiles/Lab5_base.dir/build.make CMakeFiles/Lab5_base.dir/src/AC_base.cpp.i
-.PHONY : src/AC_base.cpp.i
+src/ACtest.cpp.i:
+	$(MAKE) -f CMakeFiles/Lab6_test.dir/build.make CMakeFiles/Lab6_test.dir/src/ACtest.cpp.i
+.PHONY : src/ACtest.cpp.i
 
-src/AC_base.s: src/AC_base.cpp.s
-.PHONY : src/AC_base.s
+src/ACtest.s: src/ACtest.cpp.s
+.PHONY : src/ACtest.s
 
 # target to generate assembly for a file
-src/AC_base.cpp.s:
-	$(MAKE) -f CMakeFiles/Lab5_base.dir/build.make CMakeFiles/Lab5_base.dir/src/AC_base.cpp.s
-.PHONY : src/AC_base.cpp.s
+src/ACtest.cpp.s:
+	$(MAKE) -f CMakeFiles/Lab6_test.dir/build.make CMakeFiles/Lab6_test.dir/src/ACtest.cpp.s
+.PHONY : src/ACtest.cpp.s
 
-src/AC_joker.o: src/AC_joker.cpp.o
-.PHONY : src/AC_joker.o
+src/JOtest.o: src/JOtest.cpp.o
+.PHONY : src/JOtest.o
 
 # target to build an object file
-src/AC_joker.cpp.o:
-	$(MAKE) -f CMakeFiles/Lab5_joker.dir/build.make CMakeFiles/Lab5_joker.dir/src/AC_joker.cpp.o
-.PHONY : src/AC_joker.cpp.o
+src/JOtest.cpp.o:
+	$(MAKE) -f CMakeFiles/Lab6_jtest.dir/build.make CMakeFiles/Lab6_jtest.dir/src/JOtest.cpp.o
+.PHONY : src/JOtest.cpp.o
 
-src/AC_joker.i: src/AC_joker.cpp.i
-.PHONY : src/AC_joker.i
+src/JOtest.i: src/JOtest.cpp.i
+.PHONY : src/JOtest.i
 
 # target to preprocess a source file
-src/AC_joker.cpp.i:
-	$(MAKE) -f CMakeFiles/Lab5_joker.dir/build.make CMakeFiles/Lab5_joker.dir/src/AC_joker.cpp.i
-.PHONY : src/AC_joker.cpp.i
+src/JOtest.cpp.i:
+	$(MAKE) -f CMakeFiles/Lab6_jtest.dir/build.make CMakeFiles/Lab6_jtest.dir/src/JOtest.cpp.i
+.PHONY : src/JOtest.cpp.i
 
-src/AC_joker.s: src/AC_joker.cpp.s
-.PHONY : src/AC_joker.s
+src/JOtest.s: src/JOtest.cpp.s
+.PHONY : src/JOtest.s
 
 # target to generate assembly for a file
-src/AC_joker.cpp.s:
-	$(MAKE) -f CMakeFiles/Lab5_joker.dir/build.make CMakeFiles/Lab5_joker.dir/src/AC_joker.cpp.s
-.PHONY : src/AC_joker.cpp.s
+src/JOtest.cpp.s:
+	$(MAKE) -f CMakeFiles/Lab6_jtest.dir/build.make CMakeFiles/Lab6_jtest.dir/src/JOtest.cpp.s
+.PHONY : src/JOtest.cpp.s
 
 src/Lab6_AC.o: src/Lab6_AC.cpp.o
 .PHONY : src/Lab6_AC.o
 
 # target to build an object file
 src/Lab6_AC.cpp.o:
-	$(MAKE) -f CMakeFiles/Lab5_base.dir/build.make CMakeFiles/Lab5_base.dir/src/Lab6_AC.cpp.o
+	$(MAKE) -f CMakeFiles/Lab6_base.dir/build.make CMakeFiles/Lab6_base.dir/src/Lab6_AC.cpp.o
 .PHONY : src/Lab6_AC.cpp.o
 
 src/Lab6_AC.i: src/Lab6_AC.cpp.i
@@ -185,7 +221,7 @@ src/Lab6_AC.i: src/Lab6_AC.cpp.i
 
 # target to preprocess a source file
 src/Lab6_AC.cpp.i:
-	$(MAKE) -f CMakeFiles/Lab5_base.dir/build.make CMakeFiles/Lab5_base.dir/src/Lab6_AC.cpp.i
+	$(MAKE) -f CMakeFiles/Lab6_base.dir/build.make CMakeFiles/Lab6_base.dir/src/Lab6_AC.cpp.i
 .PHONY : src/Lab6_AC.cpp.i
 
 src/Lab6_AC.s: src/Lab6_AC.cpp.s
@@ -193,7 +229,7 @@ src/Lab6_AC.s: src/Lab6_AC.cpp.s
 
 # target to generate assembly for a file
 src/Lab6_AC.cpp.s:
-	$(MAKE) -f CMakeFiles/Lab5_base.dir/build.make CMakeFiles/Lab5_base.dir/src/Lab6_AC.cpp.s
+	$(MAKE) -f CMakeFiles/Lab6_base.dir/build.make CMakeFiles/Lab6_base.dir/src/Lab6_AC.cpp.s
 .PHONY : src/Lab6_AC.cpp.s
 
 src/Lab6_JO.o: src/Lab6_JO.cpp.o
@@ -201,7 +237,7 @@ src/Lab6_JO.o: src/Lab6_JO.cpp.o
 
 # target to build an object file
 src/Lab6_JO.cpp.o:
-	$(MAKE) -f CMakeFiles/Lab5_joker.dir/build.make CMakeFiles/Lab5_joker.dir/src/Lab6_JO.cpp.o
+	$(MAKE) -f CMakeFiles/Lab6_joker.dir/build.make CMakeFiles/Lab6_joker.dir/src/Lab6_JO.cpp.o
 .PHONY : src/Lab6_JO.cpp.o
 
 src/Lab6_JO.i: src/Lab6_JO.cpp.i
@@ -209,7 +245,7 @@ src/Lab6_JO.i: src/Lab6_JO.cpp.i
 
 # target to preprocess a source file
 src/Lab6_JO.cpp.i:
-	$(MAKE) -f CMakeFiles/Lab5_joker.dir/build.make CMakeFiles/Lab5_joker.dir/src/Lab6_JO.cpp.i
+	$(MAKE) -f CMakeFiles/Lab6_joker.dir/build.make CMakeFiles/Lab6_joker.dir/src/Lab6_JO.cpp.i
 .PHONY : src/Lab6_JO.cpp.i
 
 src/Lab6_JO.s: src/Lab6_JO.cpp.s
@@ -217,8 +253,62 @@ src/Lab6_JO.s: src/Lab6_JO.cpp.s
 
 # target to generate assembly for a file
 src/Lab6_JO.cpp.s:
-	$(MAKE) -f CMakeFiles/Lab5_joker.dir/build.make CMakeFiles/Lab5_joker.dir/src/Lab6_JO.cpp.s
+	$(MAKE) -f CMakeFiles/Lab6_joker.dir/build.make CMakeFiles/Lab6_joker.dir/src/Lab6_JO.cpp.s
 .PHONY : src/Lab6_JO.cpp.s
+
+src/algorithm.o: src/algorithm.cpp.o
+.PHONY : src/algorithm.o
+
+# target to build an object file
+src/algorithm.cpp.o:
+	$(MAKE) -f CMakeFiles/Lab6_base.dir/build.make CMakeFiles/Lab6_base.dir/src/algorithm.cpp.o
+	$(MAKE) -f CMakeFiles/Lab6_test.dir/build.make CMakeFiles/Lab6_test.dir/src/algorithm.cpp.o
+.PHONY : src/algorithm.cpp.o
+
+src/algorithm.i: src/algorithm.cpp.i
+.PHONY : src/algorithm.i
+
+# target to preprocess a source file
+src/algorithm.cpp.i:
+	$(MAKE) -f CMakeFiles/Lab6_base.dir/build.make CMakeFiles/Lab6_base.dir/src/algorithm.cpp.i
+	$(MAKE) -f CMakeFiles/Lab6_test.dir/build.make CMakeFiles/Lab6_test.dir/src/algorithm.cpp.i
+.PHONY : src/algorithm.cpp.i
+
+src/algorithm.s: src/algorithm.cpp.s
+.PHONY : src/algorithm.s
+
+# target to generate assembly for a file
+src/algorithm.cpp.s:
+	$(MAKE) -f CMakeFiles/Lab6_base.dir/build.make CMakeFiles/Lab6_base.dir/src/algorithm.cpp.s
+	$(MAKE) -f CMakeFiles/Lab6_test.dir/build.make CMakeFiles/Lab6_test.dir/src/algorithm.cpp.s
+.PHONY : src/algorithm.cpp.s
+
+src/modifiedALG.o: src/modifiedALG.cpp.o
+.PHONY : src/modifiedALG.o
+
+# target to build an object file
+src/modifiedALG.cpp.o:
+	$(MAKE) -f CMakeFiles/Lab6_joker.dir/build.make CMakeFiles/Lab6_joker.dir/src/modifiedALG.cpp.o
+	$(MAKE) -f CMakeFiles/Lab6_jtest.dir/build.make CMakeFiles/Lab6_jtest.dir/src/modifiedALG.cpp.o
+.PHONY : src/modifiedALG.cpp.o
+
+src/modifiedALG.i: src/modifiedALG.cpp.i
+.PHONY : src/modifiedALG.i
+
+# target to preprocess a source file
+src/modifiedALG.cpp.i:
+	$(MAKE) -f CMakeFiles/Lab6_joker.dir/build.make CMakeFiles/Lab6_joker.dir/src/modifiedALG.cpp.i
+	$(MAKE) -f CMakeFiles/Lab6_jtest.dir/build.make CMakeFiles/Lab6_jtest.dir/src/modifiedALG.cpp.i
+.PHONY : src/modifiedALG.cpp.i
+
+src/modifiedALG.s: src/modifiedALG.cpp.s
+.PHONY : src/modifiedALG.s
+
+# target to generate assembly for a file
+src/modifiedALG.cpp.s:
+	$(MAKE) -f CMakeFiles/Lab6_joker.dir/build.make CMakeFiles/Lab6_joker.dir/src/modifiedALG.cpp.s
+	$(MAKE) -f CMakeFiles/Lab6_jtest.dir/build.make CMakeFiles/Lab6_jtest.dir/src/modifiedALG.cpp.s
+.PHONY : src/modifiedALG.cpp.s
 
 # Help Target
 help:
@@ -226,22 +316,31 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... Lab5_base"
-	@echo "... Lab5_joker"
+	@echo "... Lab6_base"
+	@echo "... Lab6_joker"
+	@echo "... Lab6_jtest"
+	@echo "... Lab6_test"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... src/AC_base.o"
-	@echo "... src/AC_base.i"
-	@echo "... src/AC_base.s"
-	@echo "... src/AC_joker.o"
-	@echo "... src/AC_joker.i"
-	@echo "... src/AC_joker.s"
+	@echo "... test"
+	@echo "... src/ACtest.o"
+	@echo "... src/ACtest.i"
+	@echo "... src/ACtest.s"
+	@echo "... src/JOtest.o"
+	@echo "... src/JOtest.i"
+	@echo "... src/JOtest.s"
 	@echo "... src/Lab6_AC.o"
 	@echo "... src/Lab6_AC.i"
 	@echo "... src/Lab6_AC.s"
 	@echo "... src/Lab6_JO.o"
 	@echo "... src/Lab6_JO.i"
 	@echo "... src/Lab6_JO.s"
+	@echo "... src/algorithm.o"
+	@echo "... src/algorithm.i"
+	@echo "... src/algorithm.s"
+	@echo "... src/modifiedALG.o"
+	@echo "... src/modifiedALG.i"
+	@echo "... src/modifiedALG.s"
 .PHONY : help
 
 

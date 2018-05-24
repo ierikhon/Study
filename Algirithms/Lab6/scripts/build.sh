@@ -7,5 +7,5 @@ fi
 
 cd ../build
 
-cmake .. -Dac=ON -Djo=ON
+cmake .. -Dac=ON -Djo=ON -Dtest=ON -Djtest=ON
 echo 'Buld Completed Sucsessfully. Makefile is in ../build'
