@@ -1,6 +1,6 @@
 #include "algorithm.h"
 
-vector<int> KMP(string P, string T)
+vector<int> KMP(const string &P, const string &T)
 {
     vector<int> result;
     vector<int> pf = prefixFunction(P);
@@ -18,7 +18,7 @@ vector<int> KMP(string P, string T)
     return result;
 }
 
-vector<int> prefixFunction (string S)
+vector<int> prefixFunction (const string &S)
 {
     int size = S.length();
     vector<int> pf(size);
@@ -35,7 +35,7 @@ vector<int> prefixFunction (string S)
     return pf;
 }
 
-vector<int> KMP_UPGR(string P, string T)
+vector<int> KMP_UPGR(const string &P, const string &T)
 {
     vector<int> result;
     vector<int> pf = prefixFunction(P);

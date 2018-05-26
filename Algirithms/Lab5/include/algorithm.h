@@ -5,8 +5,8 @@
 
 using namespace std;
 
-vector<int> KMP(string P, string T);
-vector<int> prefixFunction (string S);
-vector<int> KMP_UPGR(string P, string T);
+vector<int> KMP(const string &P, const string &T);
+vector<int> prefixFunction (const string &S);
+vector<int> KMP_UPGR(const string &P, const string &T);
 
 #endif // ALGORITHM_H
