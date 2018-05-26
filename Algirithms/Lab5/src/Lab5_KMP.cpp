@@ -1,11 +1,11 @@
 #include "algorithm.h"
 
-int main() 
+int main()
 {
     string T, P;
     cin >> P;
     cin >> T;
-    int i = 0;
+    size_t i = 0;
     vector<int> result = KMP(P, T);
     if (result.size() != 0)
     {
@@ -21,6 +21,6 @@ int main()
     else
         cout << "-1";
     cout << endl;
-    
+
     return 0;
 }

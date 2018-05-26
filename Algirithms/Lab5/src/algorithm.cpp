@@ -5,7 +5,7 @@ vector<int> KMP(string P, string T)
     vector<int> result;
     vector<int> pf = prefixFunction(P);
     size_t i;
-    int cur = 0;
+    size_t cur = 0;
     for (i=0; i<T.size(); i++)
     {
         while ((cur>0)&&(T[i] != P[cur]))
@@ -41,7 +41,7 @@ vector<int> KMP_UPGR(string P, string T)
     vector<int> pf = prefixFunction(P);
     size_t i;
     size_t size = T.size();
-    int cur = 0;
+    size_t cur = 0;
     for (i=0; i<2*size; i++)
     {
         while ((cur>0)&&(T[i%size] != P[cur]))
