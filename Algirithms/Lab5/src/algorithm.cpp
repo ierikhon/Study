@@ -56,7 +56,7 @@ vector<int> KMP_UPGR(const string &P, const string &T)
 
 bool compare(const char& a, const char& b, long int* operations)
 {
-    (*operations)++;
+    (*(operations))++;
     return a == b;
 }
 
