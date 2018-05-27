@@ -28,7 +28,7 @@ int main()
             vector<int> result = Naive(P, T, &operationsKMP);
             result = KMPvsN (P, T, &operationsN);
 
-            fout << "Pattern length - " << PatternSizes[j] << ", KMP - " << operationsKMP << ", Naive - " << operationsN << endl;
+            fout << "Pattern length - " << P.length() << ", KMP - " << operationsKMP << ", Naive - " << operationsN << endl;
         }
     }
 
