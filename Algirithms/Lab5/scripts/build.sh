@@ -7,5 +7,5 @@ fi
 
 cd ../build
 
-cmake .. -Dkmp=ON -Dshift=ON -Dtest=ON -Dstest=ON
+cmake .. -Dkmp=ON -Dshift=ON -Dtest=ON -Dstest=ON -Deff=ON
 echo 'Buld Completed Sucsessfully. Makefile is in ../build'

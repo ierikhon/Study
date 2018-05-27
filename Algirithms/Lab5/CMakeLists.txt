@@ -9,6 +9,7 @@ set (ALG src/Lab5_KMP.cpp src/algorithm.cpp)
 set (SHIFT src/Lab5_SHIFT.cpp src/algorithm.cpp)
 set (TEST src/KMPtest.cpp src/algorithm.cpp)
 set (STEST src/SHIFTtest.cpp src/algorithm.cpp)
+set (EFF src/Lab5_EFF src/algorithm.cpp)
 
 if (kmp)
     add_executable(Lab5_kmp ${ALG})
@@ -21,6 +22,10 @@ if (test)
     target_link_libraries(Lab5_test ${GTEST_LIBRARIES} pthread)
     enable_testing()
     add_test(Lab5_test "./Lab5_test")
+endif()
+
+if (eff)
+    add_executable(Lab5_eff ${EFF})
 endif()
 
 if (stest)
