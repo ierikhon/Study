@@ -1,0 +1,48 @@
+Text length - 15001
+Pattern length - 1, KMP - 15568, Naive - 15568
+Pattern length - 50, KMP - 15529, Naive - 15635
+Pattern length - 100, KMP - 15470, Naive - 15678
+Pattern length - 1000, KMP - 14546, Naive - 16621
+Pattern length - 5000, KMP - 10397, Naive - 20765
+Pattern length - 10000, KMP - 5208, Naive - 25987
+Pattern length - 15000, KMP - 2, Naive - 31204
+Text length - 20000
+Pattern length - 1, KMP - 20760, Naive - 20760
+Pattern length - 50, KMP - 20761, Naive - 20862
+Pattern length - 100, KMP - 20655, Naive - 20861
+Pattern length - 1000, KMP - 19785, Naive - 21848
+Pattern length - 5000, KMP - 15584, Naive - 26024
+Pattern length - 10000, KMP - 10399, Naive - 31212
+Pattern length - 15000, KMP - 5212, Naive - 36384
+Text length - 30000
+Pattern length - 1, KMP - 31118, Naive - 31118
+Pattern length - 50, KMP - 31203, Naive - 31307
+Pattern length - 100, KMP - 31058, Naive - 31264
+Pattern length - 1000, KMP - 30171, Naive - 32250
+Pattern length - 5000, KMP - 26065, Naive - 36467
+Pattern length - 10000, KMP - 20780, Naive - 41681
+Pattern length - 15000, KMP - 15587, Naive - 46756
+Text length - 50000
+Pattern length - 1, KMP - 51875, Naive - 51875
+Pattern length - 50, KMP - 51865, Naive - 51969
+Pattern length - 100, KMP - 52033, Naive - 52235
+Pattern length - 1000, KMP - 51005, Naive - 53093
+Pattern length - 5000, KMP - 46808, Naive - 57221
+Pattern length - 10000, KMP - 41583, Naive - 62383
+Pattern length - 15000, KMP - 36420, Naive - 67656
+Text length - 100000
+Pattern length - 1, KMP - 103794, Naive - 103794
+Pattern length - 50, KMP - 103942, Naive - 104045
+Pattern length - 100, KMP - 103895, Naive - 104101
+Pattern length - 1000, KMP - 103007, Naive - 105082
+Pattern length - 5000, KMP - 98911, Naive - 109294
+Pattern length - 10000, KMP - 93584, Naive - 114414
+Pattern length - 15000, KMP - 88368, Naive - 119543
+Text length - 1000000
+Pattern length - 1, KMP - 1037905, Naive - 1037905
+Pattern length - 50, KMP - 1040181, Naive - 1040283
+Pattern length - 100, KMP - 1039786, Naive - 1039991
+Pattern length - 1000, KMP - 1038762, Naive - 1040839
+Pattern length - 5000, KMP - 1034752, Naive - 1045156
+Pattern length - 10000, KMP - 1029325, Naive - 1050049
+Pattern length - 15000, KMP - 1024184, Naive - 1055385
