@@ -1,11 +1,11 @@
-#include "modifiedALG.h"
+#include "algorithm.h"
 
 vector<Bor> bor;
 vector<string> patterns;
 
 int main()
 {
-    bor.push_back(makeBor(0,255));
+    bor.push_back(makeBor(0, '$'));
     string T, temp;
     char joker;
     cin >> T;
@@ -13,7 +13,7 @@ int main()
     cin >> joker;
 
     stringstream str_pat(temp);
-    vector<int> count(T.size(),0);
+    vector<size_t> count(T.size(),0);
 
     vector<int> lenght;
     int len=0;
@@ -29,9 +29,9 @@ int main()
         len++;
     }
 
-    AC(T, count, lenght);
+    AC_UPGR(T, count, lenght);
 
-    for(int i=0; i<T.size(); i++)
+    for(size_t i=0; i<T.size(); i++)
         if(count[i] == patterns.size())
             cout << i+1 << endl;
 

@@ -1,4 +1,3 @@
-#include <string.h>
 #include "algorithm.h"
 #include "gtest/gtest.h"
 
@@ -10,7 +9,7 @@ class KMPtest
     public:
         string P;
         string T;
-        vector<int> result;
+        map<int,vector<int>> result;
 };
 
 class KMPParamTest : public ::testing::TestWithParam<KMPtest>
@@ -20,8 +19,8 @@ class KMPParamTest : public ::testing::TestWithParam<KMPtest>
         virtual void TearDown() { }
 };
 
-KMPtest KMPTest1 = {"CCCA", "CC", vector<int> {1, 1}};
-KMPtest KMPTest2 = {"asdf", "cd", vector<int> {}};
+KMPtest KMPTest1 = {"CCCA", {"CC"}, {{1,{1, 2}}}};
+KMPtest KMPTest2 = {"asdf", "cd", {}};
 
 INSTANTIATE_TEST_CASE_P(KMPTestInstantiation, KMPParamTest, ::testing::Values(KMPTest1, KMPTest2));
 

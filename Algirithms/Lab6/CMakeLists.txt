@@ -6,9 +6,9 @@ find_package(GTest REQUIRED)
 include_directories(include ${GTEST_INCLUDE_DIRS})
 
 set (BASE src/Lab6_AC.cpp src/algorithm.cpp)
-set (JOKER src/Lab6_JO.cpp src/modifiedALG.cpp)
+set (JOKER src/Lab6_JO.cpp src/algorithm.cpp)
 set (TEST src/ACtest.cpp src/algorithm.cpp)
-set (JTEST src/JOtest.cpp src/modifiedALG.cpp)
+set (JTEST src/JOtest.cpp src/algorithm.cpp)
 
 if (ac)
     add_executable(Lab6_base ${BASE})

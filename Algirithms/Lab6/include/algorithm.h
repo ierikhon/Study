@@ -1,18 +1,21 @@
 #ifndef ALGORITHM_H
 #define ALGORITHM_H
 #include <iostream>
+#include <sstream>
 #include <vector>
 #include <string>
 #include <cstring>
+#include <map>
+#include <algorithm>
 
 using namespace std;
 
 struct Bor
 {
-    int next[52];
-    int patternNumber;
+    map<char, int> next;
+    vector<int> patternNumber;
     int suffixL;
-    int auto_move[52];
+    map<char, int> auto_move;
     int parent;
     int CompressedSuffixL;
     bool isStr;
@@ -20,11 +23,14 @@ struct Bor
 };
 
 Bor makeBor(int parentN, char sym);
-void addtoBor(string s);
+void addtoBor(const string &s);
 int getLink(int node);
 int getAM(int node, char sym);
 int getCompressedLink(int node);
 
-vector<int> KMP (string P, string T);
-void AC(string s);
+map<int,vector<int>> KMP (const string &P, const string &T);
+vector<int> KMP_UPGR (const string &P, const string &pattern, char joker);
+void AC(const string &s, map<int, vector<int>> &answer);
+void AC_UPGR(const string& s,vector<size_t>& count, const vector<int>& lenght);
+
 #endif

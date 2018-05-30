@@ -6,8 +6,7 @@ extern vector<string> patterns;
 Bor makeBor(int parentN, char sym)
 {
     Bor borS;
-    for(int i=0; i<52; i++)
-        borS.next[i] = borS.auto_move[i] = -1;
+    borS.next[sym] = borS.auto_move[sym] = -1;
     borS.isStr = false;
     borS.suffixL = -1;
     borS.parent = parentN;
@@ -16,13 +15,13 @@ Bor makeBor(int parentN, char sym)
     return borS;
 }
 
-void addtoBor(string s)
+void addtoBor(const string &s)
 {
     int number = 0;
-    for (size_t i=0; i<s.length(); i++)
+    for (size_t i=0; i<s.length(); ++i)
     {
-        char sym = s[i] - 'A';
-        if (bor[number].next[sym] == -1)
+        char sym = s[i];
+        if ((bor[number].next.find(sym) == bor[number].next.end()) || (bor[number].next[sym] == -1))
         {
             bor.push_back(makeBor(number, sym));
             bor[number].next[sym] = bor.size() - 1;
@@ -31,23 +30,26 @@ void addtoBor(string s)
     }
     bor[number].isStr = true;
     patterns.push_back(s);
-    bor[number].patternNumber = patterns.size() - 1;
+    bor[number].patternNumber.push_back(patterns.size() - 1);
 }
 
 int getLink(int node)
 {
     if (bor[node].suffixL == -1)
+    {
         if (node == 0 || bor[node].parent == 0)
             bor[node].suffixL = 0;
         else
             bor[node].suffixL = getAM(getLink(bor[node].parent), bor[node].symbol);
+    }
     return bor[node].suffixL;
 }
 
 int getAM(int node, char sym)
 {
-    if (bor[node].auto_move[sym] == -1)
-        if (bor[node].next[sym] != -1)
+    if ((bor[node].auto_move.find(sym) == bor[node].auto_move.end())||(bor[node].auto_move[sym] == -1))
+    {
+        if ((bor[node].next.find(sym) != bor[node].next.end())&&(bor[node].next[sym] != -1))
             bor[node].auto_move[sym] = bor[node].next[sym];
         else
         {
@@ -56,6 +58,7 @@ int getAM(int node, char sym)
             else
                 bor[node].auto_move[sym] = getAM(getLink(node), sym);
         }
+    }
     return bor[node].auto_move[sym];
 }
 
@@ -76,24 +79,73 @@ int getCompressedLink(int node)
     return bor[node].CompressedSuffixL;
 }
 
-void AC(string s)
+void AC(const string &s, map<int, vector<int>> &answer)
 {
     int k = 0;
     for(size_t i = 0; i < s.length(); i++)
     {
-        k = getAM(k, s[i] - 'A');
+        k = getAM(k, s[i]);
         for(int j = k; j != 0; j = getCompressedLink(j))
         {
             if (bor[j].isStr)
-                cout << i+1 - patterns[bor[j].patternNumber].length() + 1 << " " << bor[j].patternNumber + 1 << endl;
+            {
+                cout << i+1 - patterns[bor[j].patternNumber[0]].length() + 1 << " " << bor[j].patternNumber[0] + 1 << endl;
+                answer[i+1 - patterns[bor[j].patternNumber[0]].size()+1].push_back(bor[j].patternNumber[0] + 1);
+            }
         }
     }
 }
 
-vector<int> KMP (string P, string T)
+void AC_UPGR(const string& s,vector<size_t>& count, const vector<int>& lenght)
 {
-    if (P=="CCCA")
-        return {1, 1};
-    if (P=="asdf")
-        return {};
+    int u = 0;
+    for(size_t i = 0; i < s.length(); i++)
+    {
+        u = getAM(u, s[i]);
+        for(int j = u; j != 0; j = getCompressedLink(j))
+            if (bor[j].isStr)
+                for(const auto& current: bor[j].patternNumber)
+                    if((size_t)(i+1-lenght[current])<count.size())
+                        count[i+1-lenght[current]]++;
+    }
+}
+
+vector<int> KMP_UPGR (const string &P, const string &pattern, char joker)
+{
+    vector<int> result;
+    bor.push_back(makeBor(0, '$'));
+
+    stringstream str_pat(pattern);
+    vector<size_t> count(P.size(),0);
+
+    vector<int> lenght;
+    int len=0;
+    string tmp;
+    while(getline(str_pat, tmp, joker))
+    {
+        if(tmp.size()>0)
+        {
+            len+=tmp.size();
+            lenght.push_back(len);
+            addtoBor(tmp);
+        }
+        len++;
+    }
+
+    AC_UPGR(P, count, lenght);
+
+    for(size_t i=0; i<P.size(); i++)
+        if(count[i] == patterns.size())
+            result.push_back(i+1);
+
+    return result;
+}
+
+map<int,vector<int>> KMP (const string &P, const string &T)
+{
+    bor.push_back(makeBor(0, '$'));
+    map<int,vector<int>> answer;
+    patterns.push_back(P);
+    AC(T, answer);
+    return answer;
 }

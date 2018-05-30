@@ -1,5 +1,4 @@
-#include <string.h>
-#include "modifiedALG.h"
+#include "algorithm.h"
 #include "gtest/gtest.h"
 
 vector<Bor> bor;
@@ -8,8 +7,8 @@ vector<string> patterns;
 class KMPtest
 {
     public:
-        string P;
-        string patterns;
+        const string P;
+        const string patterns;
         char joker;
         vector<int> result;
 };
@@ -28,7 +27,7 @@ INSTANTIATE_TEST_CASE_P(KMPTestInstantiation, KMPParamTest, ::testing::Values(KM
 
 TEST_P(KMPParamTest, KMPParamTestTrue)
 {
-    ASSERT_EQ(KMP(GetParam().P, GetParam().patterns, GetParam().joker), GetParam().result);
+    ASSERT_EQ(KMP_UPGR(GetParam().P, GetParam().patterns, GetParam().joker), GetParam().result);
 }
 
 int main(int argc, char *argv[])
