@@ -7,9 +7,9 @@ vector<string> patterns;
 class KMPtest
 {
     public:
-        string P;
         string T;
-        map<int,vector<int>> result;
+        string P;
+        vector<int> result;
 };
 
 class KMPParamTest : public ::testing::TestWithParam<KMPtest>
@@ -19,14 +19,14 @@ class KMPParamTest : public ::testing::TestWithParam<KMPtest>
         virtual void TearDown() { }
 };
 
-KMPtest KMPTest1 = {"CCCA", {"CC"}, {{1,{1, 2}}}};
+KMPtest KMPTest1 = {"CCCA", {"CC"}, {1, 1, 2 , 1}};
 KMPtest KMPTest2 = {"asdf", "cd", {}};
 
 INSTANTIATE_TEST_CASE_P(KMPTestInstantiation, KMPParamTest, ::testing::Values(KMPTest1, KMPTest2));
 
 TEST_P(KMPParamTest, KMPParamTestTrue)
 {
-    ASSERT_EQ(KMP(GetParam().P, GetParam().T), GetParam().result);
+    ASSERT_EQ(KMP(GetParam().T, GetParam().P), GetParam().result);
 }
 
 int main(int argc, char *argv[])

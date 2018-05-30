@@ -28,9 +28,9 @@ int getLink(int node);
 int getAM(int node, char sym);
 int getCompressedLink(int node);
 
-map<int,vector<int>> KMP (const string &P, const string &T);
+vector<int> KMP (const string &T, const string &P);
 vector<int> KMP_UPGR (const string &P, const string &pattern, char joker);
 void AC(const string &s, map<int, vector<int>> &answer);
-void AC_UPGR(const string& s,vector<size_t>& count, const vector<int>& lenght);
+void AC_UPGR(const string& s,vector<size_t>& count, const vector<int>& lngth);
 
 #endif

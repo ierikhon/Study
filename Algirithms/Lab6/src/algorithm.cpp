@@ -96,7 +96,7 @@ void AC(const string &s, map<int, vector<int>> &answer)
     }
 }
 
-void AC_UPGR(const string& s,vector<size_t>& count, const vector<int>& lenght)
+void AC_UPGR(const string& s,vector<size_t>& count, const vector<int>& lngth)
 {
     int u = 0;
     for(size_t i = 0; i < s.length(); i++)
@@ -105,8 +105,8 @@ void AC_UPGR(const string& s,vector<size_t>& count, const vector<int>& lenght)
         for(int j = u; j != 0; j = getCompressedLink(j))
             if (bor[j].isStr)
                 for(const auto& current: bor[j].patternNumber)
-                    if((size_t)(i+1-lenght[current])<count.size())
-                        count[i+1-lenght[current]]++;
+                    if((size_t)(i+1-lngth[current])<count.size())
+                        count[i+1-lngth[current]]++;
     }
 }
 
@@ -141,11 +141,29 @@ vector<int> KMP_UPGR (const string &P, const string &pattern, char joker)
     return result;
 }
 
-map<int,vector<int>> KMP (const string &P, const string &T)
+vector<int> KMP (const string &T, const string &P)
 {
+    vector<int> answer;
+
+    bor.clear();
+    patterns.clear();
+
     bor.push_back(makeBor(0, '$'));
-    map<int,vector<int>> answer;
-    patterns.push_back(P);
-    AC(T, answer);
+    addtoBor(P);
+
+    int k = 0;
+    for(size_t i = 0; i < T.length(); i++)
+    {
+        k = getAM(k, T[i]);
+        for(int j = k; j != 0; j = getCompressedLink(j))
+        {
+            if (bor[j].isStr)
+            {
+                answer.push_back(i+1 - patterns[bor[j].patternNumber[0]].size()+1);
+                answer.push_back(bor[j].patternNumber[0] + 1);
+            }
+        }
+    }
+
     return answer;
 }
