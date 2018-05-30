@@ -79,20 +79,15 @@ int getCompressedLink(int node)
     return bor[node].CompressedSuffixL;
 }
 
-void AC(const string &s, map<int, vector<int>> &answer)
+void AC(const string &s)
 {
     int k = 0;
     for(size_t i = 0; i < s.length(); i++)
     {
         k = getAM(k, s[i]);
         for(int j = k; j != 0; j = getCompressedLink(j))
-        {
             if (bor[j].isStr)
-            {
                 cout << i+1 - patterns[bor[j].patternNumber[0]].length() + 1 << " " << bor[j].patternNumber[0] + 1 << endl;
-                answer[i+1 - patterns[bor[j].patternNumber[0]].size()+1].push_back(bor[j].patternNumber[0] + 1);
-            }
-        }
     }
 }
 

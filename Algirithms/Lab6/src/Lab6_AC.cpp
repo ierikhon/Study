@@ -9,12 +9,11 @@ int main()
     string T, temp;
     int PNum;
     cin >> T >> PNum;
-    map<int,vector<int>> answer;
     for(int i=0; i<PNum; i++)
     {
         cin >> temp;
         addtoBor(temp);
     }
-    AC(T, answer);
+    AC(T);
     return 0;
 }
