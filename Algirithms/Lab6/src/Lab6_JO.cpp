@@ -1,7 +1,8 @@
 #include "algorithm.h"
 
 vector<Bor> bor;
-vector<string> patterns;
+vector<wstring> patterns;
+vector<string> patterns_NR;
 
 int main()
 {
@@ -24,7 +25,7 @@ int main()
         {
             len+=tmp.size();
             lenght.push_back(len);
-            addtoBor(tmp);
+            addtoBor_NR(tmp);
         }
         len++;
     }
@@ -32,7 +33,7 @@ int main()
     AC_UPGR(T, count, lenght);
 
     for(size_t i=0; i<T.size(); i++)
-        if(count[i] == patterns.size())
+        if(count[i] == patterns_NR.size())
             cout << i+1 << endl;
 
     return 0;

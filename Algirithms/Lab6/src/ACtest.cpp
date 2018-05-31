@@ -2,31 +2,32 @@
 #include "gtest/gtest.h"
 
 vector<Bor> bor;
-vector<string> patterns;
+vector<wstring> patterns;
+vector<string> patterns_NR;
 
-class KMPtest
+class ACtest
 {
     public:
-        string T;
-        string P;
+        wstring T;
+        vector <wstring> P;
         vector<int> result;
 };
 
-class KMPParamTest : public ::testing::TestWithParam<KMPtest>
+class ACParamTest : public ::testing::TestWithParam<ACtest>
 {
     public:
         virtual void SetUp() { }
         virtual void TearDown() { }
 };
 
-KMPtest KMPTest1 = {"CCCA", {"CC"}, {1, 1, 2 , 1}};
-KMPtest KMPTest2 = {"asdf", "cd", {}};
+ACtest ACTest1 = {L"CCCA", {L"CC"}, {1, 1, 2 , 1}};
+ACtest ACTest2 = {L"ФКТИ", {L"ФК", L"ТИ"}, {1, 1, 3, 2}};
 
-INSTANTIATE_TEST_CASE_P(KMPTestInstantiation, KMPParamTest, ::testing::Values(KMPTest1, KMPTest2));
+INSTANTIATE_TEST_CASE_P(ACTestInstantiation, ACParamTest, ::testing::Values(ACTest1, ACTest2));
 
-TEST_P(KMPParamTest, KMPParamTestTrue)
+TEST_P(ACParamTest, ACParamTestTrue)
 {
-    ASSERT_EQ(KMP(GetParam().T, GetParam().P), GetParam().result);
+    ASSERT_EQ(ACtester(GetParam().T, GetParam().P), GetParam().result);
 }
 
 int main(int argc, char *argv[])

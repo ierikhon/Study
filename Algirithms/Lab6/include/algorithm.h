@@ -23,14 +23,15 @@ struct Bor
 };
 
 Bor makeBor(int parentN, char sym);
-void addtoBor(const string &s);
+void addtoBor(const wstring &s);
+void addtoBor_NR(const string &s);
 int getLink(int node);
 int getAM(int node, char sym);
 int getCompressedLink(int node);
 
-vector<int> KMP (const string &T, const string &P);
-vector<int> KMP_UPGR (const string &P, const string &pattern, char joker);
-void AC(const string &s);
-void AC_UPGR(const string& s,vector<size_t>& count, const vector<int>& lngth);
+vector<int> ACtester (const wstring &T, vector<wstring> P);
+vector<int> ACtester_UPGR (const string &P, const string &pattern, char joker);
+void AC(const wstring &s);
+void AC_UPGR(const string& s, vector<size_t>& count, const vector<int>& lngth);
 
 #endif

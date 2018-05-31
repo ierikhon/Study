@@ -2,32 +2,33 @@
 #include "gtest/gtest.h"
 
 vector<Bor> bor;
-vector<string> patterns;
+vector<string> patterns_NR;
+vector<wstring> patterns;
 
-class KMPtest
+class ACtest
 {
     public:
         const string P;
-        const string patterns;
+        const string pattern;
         char joker;
         vector<int> result;
 };
 
-class KMPParamTest : public ::testing::TestWithParam<KMPtest>
+class ACParamTest : public ::testing::TestWithParam<ACtest>
 {
     public:
         virtual void SetUp() { }
         virtual void TearDown() { }
 };
 
-KMPtest KMPTest1 = {"ACT", "A$", '$', vector<int> {1}};
-KMPtest KMPTest2 = {"asdf", "c$", '$', vector<int> {}};
+ACtest ACTest1 = {"ACT", "A$", '$', {1}};
+ACtest ACTest2 = {"asdf", "c$", '$', {}};
 
-INSTANTIATE_TEST_CASE_P(KMPTestInstantiation, KMPParamTest, ::testing::Values(KMPTest1, KMPTest2));
+INSTANTIATE_TEST_CASE_P(ACTestInstantiation, ACParamTest, ::testing::Values(ACTest1, ACTest2));
 
-TEST_P(KMPParamTest, KMPParamTestTrue)
+TEST_P(ACParamTest, ACParamTestTrue)
 {
-    ASSERT_EQ(KMP_UPGR(GetParam().P, GetParam().patterns, GetParam().joker), GetParam().result);
+    ASSERT_EQ(ACtester_UPGR(GetParam().P, GetParam().pattern, GetParam().joker), GetParam().result);
 }
 
 int main(int argc, char *argv[])

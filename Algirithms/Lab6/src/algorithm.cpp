@@ -1,7 +1,8 @@
 #include "algorithm.h"
 
 extern vector<Bor> bor;
-extern vector<string> patterns;
+extern vector<wstring> patterns;
+extern vector<string> patterns_NR;
 
 Bor makeBor(int parentN, char sym)
 {
@@ -15,7 +16,25 @@ Bor makeBor(int parentN, char sym)
     return borS;
 }
 
-void addtoBor(const string &s)
+void addtoBor(const wstring &s)
+{
+    int number = 0;
+    for (size_t i=0; i<s.length(); ++i)
+    {
+        wchar_t sym = s[i];
+        if ((bor[number].next.find(sym) == bor[number].next.end()) || (bor[number].next[sym] == -1))
+        {
+            bor.push_back(makeBor(number, sym));
+            bor[number].next[sym] = bor.size() - 1;
+        }
+        number = bor[number].next[sym];
+    }
+    bor[number].isStr = true;
+    patterns.push_back(s);
+    bor[number].patternNumber.push_back(patterns.size() - 1);
+}
+
+void addtoBor_NR(const string &s)
 {
     int number = 0;
     for (size_t i=0; i<s.length(); ++i)
@@ -29,8 +48,8 @@ void addtoBor(const string &s)
         number = bor[number].next[sym];
     }
     bor[number].isStr = true;
-    patterns.push_back(s);
-    bor[number].patternNumber.push_back(patterns.size() - 1);
+    patterns_NR.push_back(s);
+    bor[number].patternNumber.push_back(patterns_NR.size() - 1);
 }
 
 int getLink(int node)
@@ -79,7 +98,7 @@ int getCompressedLink(int node)
     return bor[node].CompressedSuffixL;
 }
 
-void AC(const string &s)
+void AC(const wstring &s)
 {
     int k = 0;
     for(size_t i = 0; i < s.length(); i++)
@@ -105,7 +124,7 @@ void AC_UPGR(const string& s,vector<size_t>& count, const vector<int>& lngth)
     }
 }
 
-vector<int> KMP_UPGR (const string &P, const string &pattern, char joker)
+vector<int> ACtester_UPGR (const string &P, const string &pattern, char joker)
 {
     vector<int> result;
     bor.push_back(makeBor(0, '$'));
@@ -122,7 +141,7 @@ vector<int> KMP_UPGR (const string &P, const string &pattern, char joker)
         {
             len+=tmp.size();
             lenght.push_back(len);
-            addtoBor(tmp);
+            addtoBor_NR(tmp);
         }
         len++;
     }
@@ -130,13 +149,13 @@ vector<int> KMP_UPGR (const string &P, const string &pattern, char joker)
     AC_UPGR(P, count, lenght);
 
     for(size_t i=0; i<P.size(); i++)
-        if(count[i] == patterns.size())
+        if(count[i] == patterns_NR.size())
             result.push_back(i+1);
 
     return result;
 }
 
-vector<int> KMP (const string &T, const string &P)
+vector<int> ACtester (const wstring &T, vector<wstring> P)
 {
     vector<int> answer;
 
@@ -144,7 +163,8 @@ vector<int> KMP (const string &T, const string &P)
     patterns.clear();
 
     bor.push_back(makeBor(0, '$'));
-    addtoBor(P);
+    for (auto current: P)
+        addtoBor(current);
 
     int k = 0;
     for(size_t i = 0; i < T.length(); i++)
