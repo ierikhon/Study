@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>doc/alg.htm</file>
+        <file>doc/close.htm</file>
+        <file>doc/context.htm</file>
+        <file>doc/control.htm</file>
+        <file>doc/files.htm</file>
+        <file>doc/form.htm</file>
+        <file>doc/form.png</file>
+        <file>doc/graph.htm</file>
+        <file>doc/gredit.png</file>
+        <file>doc/index.htm</file>
+    </qresource>
+</RCC>
